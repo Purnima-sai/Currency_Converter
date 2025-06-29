@@ -1,0 +1,155 @@
+ :root {
+      --primary: #3a86ff;
+      --glass-bg: rgba(255, 255, 255, 0.2);
+      --border-glass: rgba(255, 255, 255, 0.3);
+      --text-color: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--text-color);
+    }
+
+    /* Background globe animation */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e3/Rotating_earth_(large).gif') no-repeat center center;
+      background-size: contain;
+      opacity: 0.04;
+      z-index: 0;
+      animation: slowrotate 60s linear infinite;
+    }
+
+    @keyframes slowrotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .floating-shape {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle at center, #3a86ff40, transparent);
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    .floating-shape.one {
+      top: 10%;
+      left: 20%;
+    }
+
+    .floating-shape.two {
+      bottom: 10%;
+      right: 15%;
+      animation-delay: 4s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .logo {
+      position: fixed;
+      top: 20px;
+      left: 30px;
+      font-weight: 800;
+      font-size: 22px;
+      color: #ffffff;
+      z-index: 999;
+    }
+
+    .watermark {
+      position: fixed;
+      bottom: 10px;
+      right: 20px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+      z-index: 999;
+    }
+
+    .container {
+      backdrop-filter: blur(10px);
+      background: var(--glass-bg);
+      border: 1px solid var(--border-glass);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      border-radius: 20px;
+      padding: 40px;
+      width: 90%;
+      max-width: 500px;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 26px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    select, input {
+      padding: 12px 14px;
+      font-size: 16px;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    select option {
+      color: black;
+    }
+
+    .result-box {
+      margin-top: 25px;
+      text-align: center;
+    }
+
+    .result-box span {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+
+    .loader {
+      display: none;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .loader.active {
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 30px 20px;
+      }
+    }
